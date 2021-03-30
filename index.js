@@ -112,16 +112,20 @@ class Airplane {
           + {name} and {location} of course come from the instance's own properties.
   */
  class Lambdasian {
-    constructor(object){
-      this.name = object.name;
-      this.age = object.age;
-      this.location = object.location;
+    constructor(person){
+      this.name = person.name;
+      this.age = person.age;
+      this.location = person.location;
     }
     speak(){
       return `Hello my name is ${this.name}, I am from ${this.location}`;
     }
   }
   
+  const person1 = new Lambdasian({name:"Sean", age: 28, location:"Toronto"});
+
+  console.log("Task 3: ",person1.speak());
+
   /*
     TASK 4
       - Write an Instructor class extending Lambdasian.
@@ -136,9 +140,20 @@ class Airplane {
           + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
- class Instructor {
-
- }
+ class Instructor extends Lambdasian {
+    constructor(person){
+      super(person);
+      this.specialty = person.specialty;
+      this.favLanguage = person.favLanguage;
+      this.catchPhrase = person.catchPhrase;
+   }
+   demo(subject){
+     return `Today we are learning about ${subject}`;
+   }
+   grade(student, subject){
+     return `${student.name} receives a perfect score on ${subject}`
+   }
+}
   /*
     TASK 5
       - Write a Student class extending Lambdasian.
